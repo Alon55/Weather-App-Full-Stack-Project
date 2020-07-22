@@ -10,8 +10,9 @@ class TempManager {
 
   async getCityData(cityName) {
     let data = await $.get(`/city/${cityName}`);
-    if(data.cod === 200){
-    this.cityData.push(data)};
+    if (data.cod === 200) {
+      this.cityData.push(data);
+    }
   }
 
   async saveCity(cityName) {
@@ -23,14 +24,15 @@ class TempManager {
   }
 
   removeCity(cityName) {
-      
     $.ajax({
-        type: "DELETE",
-        url: `/city/${cityName}`,
-        success: function () {}
-    })
-    
+      type: 'DELETE',
+      url: `/city/${cityName}`,
+      success: function () {},
+    });
+    for (let i = 0; i < this.cityData.length; i++) {
+      if (this.cityData[i].name === cityName) {
+        this.cityData.splice(i, 1);
+      }
+    }
   }
 }
-
-
