@@ -11,15 +11,18 @@ router.get('/city/:city', function (req, res) {
         request(
             `http://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=21c9894d797e505b380acee50bbb8fa3`,
           function (err, response) {
-            let data = JSON.parse(response.body)
-            data = {
-                name: data.name,
-                temperature: Math.round(data.main.temp),
-                condition: data.weather[0].description,
-                conditionPic: data.weather[0].icon
-              }
-            res.send(data);
-          }
+              let data = JSON.parse(response.body)
+              if(data.cod === 200){
+              data = {
+                  name: data.name,
+                  temperature: Math.round(data.main.temp),
+                  condition: data.weather[0].description,
+                  conditionPic: data.weather[0].icon,
+                  cod: data.cod
+                }
+              res.send(data)}
+              else{res.send(data)};
+            }
         );
   });
 

@@ -9,11 +9,10 @@ app.use(express.static(path.join(__dirname, 'dist')));
 app.use(express.static(path.join(__dirname, 'node_modules')));
 
 
-mongoose.connect(process.env.MONGODB_URI||'mongodb://localhost/Weather-App-FullStack-Project', {useNewUrlParser: true,});
 
-/*mongoose.connect('mongodb://localhost/Weather-App-FullStack-Project', {
-  useNewUrlParser: true,
-});*/
+mongoose.connect(process.env.MONGODB_URI ||'mongodb://localhost/Weather-App-FullStack-Project', {useNewUrlParser: true,});
+
+
 
 
 app.use(bodyParser.json())
@@ -29,6 +28,3 @@ app.use('/', api)
 
 const port = 3000
 app.listen(process.env.PORT || port);
-/*app.listen(port, function () {
-    console.log(`Server running on ${port}`)
-})*/

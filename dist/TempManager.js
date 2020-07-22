@@ -10,7 +10,8 @@ class TempManager {
 
   async getCityData(cityName) {
     let data = await $.get(`/city/${cityName}`);
-    this.cityData.push(data);
+    if(data.cod === 200){
+    this.cityData.push(data)};
   }
 
   async saveCity(cityName) {
