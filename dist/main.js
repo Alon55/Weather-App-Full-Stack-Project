@@ -1,6 +1,5 @@
 let render = new Renderer();
 let temp = new TempManager();
-const $ = require( "jquery" )( window );
 
 async function loadPage() {
   await temp.getDataFromDB();
@@ -18,7 +17,7 @@ async function handleSearch() {
     await render.renderData(temp.cityData);
     $('#input').val('');
   }
-  
+
 }
 
 $('#btn').click(() => {
